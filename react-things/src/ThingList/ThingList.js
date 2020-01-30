@@ -25,21 +25,22 @@ class ThingList extends React.Component {
     };
 
     render() {
-        let {list, removeItem} = this.props
+        let {things, removeItem, updateItem} = this.props
         return (
             <>
                 <input id="text"
                     value={this.state.name}
                     onChange={e => this.handleChange(e)}
-                    
                 />
-                <button onClick={this.handleSubmit}>Create</button>
-                <div id="things">
-                    {list.map((item, index) => {
+                <button id="create"onClick={this.handleSubmit}>Create</button>
+                <div>
+                    <p>List of Things:</p>
+                    {things.map((item, index) => {
                         return (
                             <p key={index}>
+                                <button id="update" onClick={() => updateItem(index)}>Update</button>
                                 {item}
-                                <button onClick={() => removeItem(index)}>Delete</button>
+                                <button id="delete"onClick={() => removeItem(index)}>Delete</button>
                             </p>
                         );
                     })}
