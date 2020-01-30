@@ -60,18 +60,34 @@ class App extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Header
-          length={this.state.things.length} 
-        />
-        <ThingList
-          addItem={this.addItem}
-          things={this.state.things} 
-          removeItem={this.removeItem}
-          updateItem={this.updateItem}
-        />
-        <Footer />
-      </React.Fragment>
+      <Router>
+      <div className="App">
+        <Nav />
+        <Switch>
+          <Route path="/" exact>
+            <h1>Home Page</h1>
+          </Route>
+          <Route path="/about" >
+            <h1>About Page</h1>
+          </Route>
+          <Route path="/things" exact>
+            <>
+            <Header 
+              length={this.state.things.length}
+            />
+            <ThingList 
+              addItem={this.addItem}
+              things={this.state.things} 
+              removeItem={this.removeItem}
+              updateItem={this.updateItem}              
+            />
+            </>
+          </Route>
+          <Route path="/things/:id" render={this.renderThingDetail} />
+        </Switch>
+        <Footer/>
+      </div>
+    </Router>
     );
   }
 }
