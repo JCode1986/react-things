@@ -25,7 +25,7 @@ class ThingList extends React.Component {
     };
 
     render() {
-        let {list, removeItem} = this.props
+        let {things, removeItem, updateItem} = this.props
         return (
             <>
                 <input id="text"
@@ -35,9 +35,10 @@ class ThingList extends React.Component {
                 <button id="create"onClick={this.handleSubmit}>Create</button>
                 <div>
                     <p>List of Things:</p>
-                    {list.map((item, index) => {
+                    {things.map((item, index) => {
                         return (
                             <p key={index}>
+                                <button id="update" onClick={() => updateItem(index)}>Update</button>
                                 {item}
                                 <button id="delete"onClick={() => removeItem(index)}>Delete</button>
                             </p>

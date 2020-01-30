@@ -1,18 +1,28 @@
 import React from 'react';
-import axios from 'axios'
-import Header from './Header/Header'
-import Footer from './Footer/Footer'
-import ThingList from './ThingList/ThingList'
+import axios from 'axios';
+import Header from './Header/Header';
+import Footer from './Footer/Footer';
+import ThingList from './ThingList/ThingList';
 import './App.css';
-import './Footer/Footer.scss'
-import './Header/Header.scss'
-import './ThingList/ThingList.scss'
+import './Footer/Footer.scss';
+import './Header/Header.scss';
+import './ThingList/ThingList.scss';
+import uuid from "uuid";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  NavLink,
+  useRouteMatch,
+  Redirect,
+} from 'react-router-dom';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        list: []
+        things: []
     };
   }
 
@@ -20,37 +30,62 @@ class App extends React.Component {
     const response = await axios.get('/data/things.json');
     console.log('data', response)
     this.setState({
-      list: response.data
+      things: response.data
     })
+
+  }
+  addItem = thing => {
+      // thing.id = uuid.v4()
+      this.setState(prevState => ({
+        things: prevState.things.concat(thing),
+      }));
   }
 
   removeItem = index => {
-    const list = this.state.list;
-    list.splice(index, 1);
-    this.setState({ list });
+    const things = this.state.things;
+    things.splice(index, 1);
+    this.setState({ things });
   };
 
-  addItem = (name) => {
-      this.setState(prevState => ({
-        list: prevState.list.concat(name),
-      }));
+  updateItem = updatedThing => {
+    const things = this.state.things.map(thing => {
+      if (thing.id === updatedThing.id) {
+        thing.name = updatedThing.name
+      }
+      return thing;
+    })
+
+    this.setState({ things })
   }
 
   render() {
     return (
       <React.Fragment>
         <Header
-          length={this.state.list.length} 
+          length={this.state.things.length} 
         />
         <ThingList
           addItem={this.addItem}
-          list={this.state.list} 
+          things={this.state.things} 
           removeItem={this.removeItem}
+          updateItem={this.updateItem}
         />
         <Footer />
       </React.Fragment>
     );
   }
+}
+
+function Nav(props) {
+  return (
+      <nav>
+          <ul>
+          <li><NavLink to="/">Home</NavLink></li>
+          <li><NavLink to="/about">About</NavLink></li>
+          <li><NavLink to="/things">Things</NavLink></li>
+          </ul>
+      </nav>
+  )
 }
 
 export default App;
