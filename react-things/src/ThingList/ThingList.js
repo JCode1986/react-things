@@ -31,15 +31,15 @@ class ThingList extends React.Component {
                 <input id="text"
                     value={this.state.name}
                     onChange={e => this.handleChange(e)}
-                    
                 />
-                <button onClick={this.handleSubmit}>Create</button>
-                <div id="things">
+                <button id="create"onClick={this.handleSubmit}>Create</button>
+                <div>
+                    <p>List of Things:</p>
                     {list.map((item, index) => {
                         return (
                             <p key={index}>
                                 {item}
-                                <button onClick={() => removeItem(index)}>Delete</button>
+                                <button id="delete"onClick={() => removeItem(index)}>Delete</button>
                             </p>
                         );
                     })}

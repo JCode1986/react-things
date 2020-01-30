@@ -1,8 +1,9 @@
 import React from 'react';
-import './App.css';
+import axios from 'axios'
 import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import ThingList from './ThingList/ThingList'
+import './App.css';
 import './Footer/Footer.scss'
 import './Header/Header.scss'
 import './ThingList/ThingList.scss'
@@ -13,6 +14,14 @@ class App extends React.Component {
     this.state = {
         list: []
     };
+  }
+
+  async componentDidMount() {
+    const response = await axios.get('/data/things.json');
+    console.log('data', response)
+    this.setState({
+      list: response.data
+    })
   }
 
   removeItem = index => {
