@@ -1,8 +1,8 @@
 # react-things
 
-##Author: Joseph Hangarter
+## Author: Joseph Hangarter
 
-###Overview
+### Overview
 * Create a web app with a top level App component
   * Header
   * ThingList
