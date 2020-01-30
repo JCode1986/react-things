@@ -8,11 +8,14 @@ class ThingList extends React.Component {
         };
     }
 
-    handleSubmit = () => {
-        this.props.addItem(this.state.name)
-        this.setState({
-            name: ""
-        });
+    handleSubmit = (e) => {
+        if (this.state.name) {
+            this.props.addItem(this.state.name)
+            this.setState({
+                name: ""
+            });
+        }
+        e.preventDefault();
     };
 
     handleChange = e => {
@@ -30,7 +33,7 @@ class ThingList extends React.Component {
                     onChange={e => this.handleChange(e)}
                     
                 />
-                <button onClick={this.handleSubmit}>Submit</button>
+                <button onClick={this.handleSubmit}>Create</button>
                 <div id="things">
                     {list.map((item, index) => {
                         return (
