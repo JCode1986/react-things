@@ -22,7 +22,6 @@ class ThingList extends React.Component {
     };
 
     render() {
-        //destructure
         let {list, removeItem} = this.props
         return (
             <>
