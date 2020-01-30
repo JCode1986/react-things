@@ -11,8 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        list: [],
-        thing: ""
+        list: []
     };
   }
 
@@ -23,9 +22,9 @@ class App extends React.Component {
   };
 
   addItem = (name) => {
-    this.setState(prevState => ({
-      list: prevState.list.concat(name),
-    }));
+      this.setState(prevState => ({
+        list: prevState.list.concat(name),
+      }));
   }
 
   render() {
