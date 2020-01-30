@@ -37,9 +37,9 @@ class ThingList extends React.Component {
                     <p>List of Things:</p>
                     {things.map((item, index) => {
                         return (
-                            <p key={index}>
-                                <button id="update" onClick={() => updateItem(index)}>Update</button>
-                                {item}
+                            <p key={item.id}>
+                                <button id="update" onClick={() => updateItem(item.id)}>Update</button>
+                                {item.name}
                                 <button id="delete"onClick={() => removeItem(index)}>Delete</button>
                             </p>
                         );

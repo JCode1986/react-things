@@ -3,7 +3,7 @@ import axios from 'axios';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import ThingList from './ThingList/ThingList';
-import './App.css';
+import './App.scss';
 import './Footer/Footer.scss';
 import './Header/Header.scss';
 import './ThingList/ThingList.scss';
@@ -34,8 +34,8 @@ class App extends React.Component {
     })
 
   }
-  addItem = thing => {
-      // thing.id = uuid.v4()
+  addItem = thingName => {
+      const thing = {id: uuid.v4(), name: thingName}
       this.setState(prevState => ({
         things: prevState.things.concat(thing),
       }));
@@ -48,6 +48,7 @@ class App extends React.Component {
   };
 
   updateItem = updatedThing => {
+    console.log(updatedThing, 'what is this')
     const things = this.state.things.map(thing => {
       if (thing.id === updatedThing.id) {
         thing.name = updatedThing.name
@@ -95,7 +96,7 @@ class App extends React.Component {
 function Nav(props) {
   return (
       <nav>
-          <ul>
+          <ul id="nav">
           <li><NavLink to="/">Home</NavLink></li>
           <li><NavLink to="/about">About</NavLink></li>
           <li><NavLink to="/things">Things</NavLink></li>
