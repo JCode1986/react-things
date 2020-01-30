@@ -1,10 +1,13 @@
 import React from "react";
 
 class Header extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    
     render() {
-    const list = this.props.list || [];
-
-    return <h2 id="title">Created Things: {list.length} </h2>;
+        let {length} = this.props
+        return <h2>Created Things: {length} </h2>;
     }
 }
 
