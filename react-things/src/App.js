@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import Header from './Header/Header';
-import Footer from './Footer/Footer';
-import ThingList from './ThingList/ThingList';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import ThingList from './components/ThingList/ThingList';
 import './App.scss';
-import './Footer/Footer.scss';
-import './Header/Header.scss';
-import './ThingList/ThingList.scss';
+import './components/Footer/Footer.scss';
+import './components/Header/Header.scss';
+import './components/ThingList/ThingList.scss';
 import uuid from "uuid";
 import {
   BrowserRouter as Router,
@@ -84,7 +84,7 @@ class App extends React.Component {
             />
             </>
           </Route>
-          <Route path="/things/:id" render={this.renderThingDetail} />
+
         </Switch>
         <Footer/>
       </div>
